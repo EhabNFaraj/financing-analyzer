@@ -1,46 +1,143 @@
-# Toro Auto Financing & Payment Analyzer
+🚗 Toro Auto Financing & Payment Analyzer
 
-A real‑world, portfolio‑ready project based on daily workflows at **Toro Auto**. It ingests deal/finance exports, cleans them, and produces insights: approval rates, APR trends, lender mix, and risk flags (DTI/LTV).
+A practical, portfolio-ready project based on real dealership workflows at Toro Auto.
+This repository contains:
 
-## Quickstart
-```bash
+1️⃣ Automated Financing Data Pipeline (ETL + Analytics + Excel Reporting)
+
+Ingests and cleans simulated financing data
+
+Computes approval rates, lender mix, APR trends, and risk metrics (DTI/LTV)
+
+Exports weekly Excel reports with tables and charts
+
+Demonstrates strong Python, Pandas, and automation skills
+
+2️⃣ Interactive Auto Financing Approval Simulator (run.py)
+
+A command-line tool that estimates financing approval likelihood using realistic rules based on:
+
+FICO score
+
+Monthly income
+
+Housing/other debt
+
+Vehicle price
+
+Down payment
+
+Loan term + APR
+
+Risk flags (open auto loan or repossession within the last 24 months)
+
+The simulator applies rules similar to real lenders:
+High credit → easier approvals & lower DP requirements
+Low credit → larger down payments required
+Recent repo → auto-deny unless FICO is 700+
+
+🚀 Quickstart (Data Pipeline)
 python -m venv .venv
-# Windows: .venv\Scripts\activate
-# macOS/Linux:
-source .venv/bin/activate
+source .venv/bin/activate    # macOS/Linux
+# .venv\Scripts\activate     # Windows
+
 pip install -r requirements.txt
 
-# First run (uses sample data already in data/raw)
 python -m src.cli run-weekly
-```
 
-Outputs will appear in `reports/` (Excel summary + charts).
 
-## Repo Structure
-```
+Your weekly Excel report will appear in:
+
+reports/weekly_summary.xlsx
+
+🧮 Run the Interactive Simulator
+python run.py
+
+
+You will be asked for:
+
+Credit score (FICO)
+
+Monthly income
+
+Monthly housing payment
+
+Other debt payments
+
+Vehicle price
+
+Down payment
+
+Loan term
+
+APR
+
+Any open auto loans or repossessions in last 24 months
+
+The simulator then calculates:
+
+Monthly payment (based on APR + term)
+
+Debt-to-Income ratio (DTI)
+
+Loan-to-Value ratio (LTV)
+
+Minimum required down payment
+
+Approval status (Approved / Conditional / Denied)
+
+Approval probability
+
+Tips to improve approval odds
+
+📂 Repository Structure
 financing-analyzer/
+├─ run.py                   # Interactive approval simulator
 ├─ README.md
 ├─ requirements.txt
 ├─ .gitignore
+│
 ├─ data/
-│  ├─ raw/                 # CSV exports (sample included)
-│  ├─ interim/             # cleaned CSV (after ingest)
-│  ├─ processed/           # model-ready tables
+│  ├─ raw/                 # Input CSVs (sample included)
+│  ├─ interim/             # Cleaned CSVs
+│  ├─ processed/           # Model-ready tables
 │  └─ schema.sql
+│
 ├─ src/
-│  ├─ config.py
-│  ├─ ingest.py
-│  ├─ analyze.py
-│  ├─ viz.py
-│  └─ cli.py
+│  ├─ config.py            # Global settings
+│  ├─ ingest.py            # Data cleaning & normalization
+│  ├─ analyze.py           # Risk metrics & lender analytics
+│  ├─ viz.py               # Chart generation
+│  └─ cli.py               # Command-line wrapper
+│
 ├─ reports/
-│  └─ charts/
-├─ tests/
-│  ├─ test_ingest.py
-│  └─ test_analyze.py
+│  └─ charts/              # Rendered plots
+│
 └─ notebooks/
-   └─ 01_eda.ipynb
-```
+   └─ 01_eda.ipynb         # Exploratory data analysis
 
-## Data Privacy
-- Do **not** commit PII. Keep only aggregate stats and fake/sample data.
+🔒 Data Privacy Notice
+
+This project uses fake, synthetic, auto-generated sample data.
+No real customer information is used or stored.
+Do not upload real dealership data to this repository.
+
+🎯 What This Project Demonstrates
+
+Auto-finance data cleaning and ETL
+
+Credit-based approval modeling
+
+DTI/LTV risk assessment
+
+Simulated dealership decision logic
+
+Python scripting & automation
+
+Pandas + NumPy data workflows
+
+Excel report generation with visuals
+
+Creating user-friendly interactive tools
+
+Clean GitHub project structure & documentation
